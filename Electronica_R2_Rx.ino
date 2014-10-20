@@ -24,7 +24,7 @@ void setup() {
   Rx.reset(); // Reset ADF7242 radio controller during cold start up
   Rx.idle(); // Idle ADF7242 radio controller after cold start up
   // Initialize settings for GFSK/FSK and set data rate
-  Rx.initFSK(2); // Data rate [ 1=50kbps, 2=62.5kbps, 3=100kbps, 4=125kbps, 5=250kbps, 6=500kbps, 7=1Mbps, 8=2Mbps ]
+  Rx.initFSK(5); // Data rate [ 1=50kbps, 2=62.5kbps, 3=100kbps, 4=125kbps, 5=250kbps, 6=500kbps, 7=1Mbps, 8=2Mbps ]
   Rx.setMode(0x04); // Set operating mode to GFSK/FSK packet mode
   Rx.chFreq(2450); // Set operating frequency in MHz
   Rx.syncWord(0x00, 0x00); // Set sync word // sync word currently hardcoded
