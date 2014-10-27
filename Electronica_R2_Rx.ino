@@ -21,11 +21,14 @@ void setup() {
     Serial.println("**********DEBUG MODE**********");
   #endif
 
+  // ADF7242 RFIC configuration
+  Rx.configSPI();
   Rx.reset(); // Reset ADF7242 radio controller during cold start up
   Rx.idle(); // Idle ADF7242 radio controller after cold start up
   // Initialize settings for GFSK/FSK and set data rate
   Rx.initFSK(5); // Data rate [ 1=50kbps, 2=62.5kbps, 3=100kbps, 4=125kbps, 5=250kbps, 6=500kbps, 7=1Mbps, 8=2Mbps ]
   Rx.setMode(0x04); // Set operating mode to GFSK/FSK packet mode
+  //Rx.initIEEE();
   Rx.chFreq(2450); // Set operating frequency in MHz
   Rx.syncWord(0x00, 0x00); // Set sync word // sync word currently hardcoded
   Rx.cfgPA(3, 0, 7); // Configure power amplifier (power, high power mode, ramp rate)
@@ -58,9 +61,9 @@ void loop() {
     #endif
 
     // Receive IMU data via ADF7242
-//    delay(1);
     Rx.receive();
   }
+
   #ifdef DEBUG
     Rx.dumpISB();
     for(int i = 0x000; i < 0x005; ++i) {
